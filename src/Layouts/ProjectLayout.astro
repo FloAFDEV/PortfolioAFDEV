@@ -1,0 +1,141 @@
+---
+import Layout from './Layout.astro';
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const canonicalUrl = new URL(`/projects/${project.slug}`, Astro.site ?? Astro.url.origin).href;
+---
+
+<Layout
+  title={`${project.title} – Florent Perez`}
+  description={project.shortDescription}
+  image={project.thumbnail}
+>
+  <!-- Breadcrumb -->
+  <nav aria-label="Fil d'ariane" class="flex items-center gap-2 text-sm text-[var(--text-color)] opacity-70">
+    <a href="/" class="hover:text-primary transition-colors no-underline">Accueil</a>
+    <span aria-hidden="true">/</span>
+    <a href="/projects" class="hover:text-primary transition-colors no-underline">Projets</a>
+    <span aria-hidden="true">/</span>
+    <span class="text-primary font-medium">{project.title}</span>
+  </nav>
+
+  <article>
+    <!-- Hero -->
+    <header class="flex flex-col gap-4">
+      <h1 class="text-3xl font-bold text-[var(--text-color)]">{project.title}</h1>
+      <p class="text-[1.15em] text-[var(--text-color)] opacity-80 max-w-[700px]">
+        {project.shortDescription}
+      </p>
+
+      <!-- Tech tags -->
+      <ul class="flex flex-wrap gap-2 list-none m-0 p-0" aria-label="Technologies utilisées">
+        {project.technologies.map((tech) => (
+          <li class="bg-primary/20 text-primary border border-primary/40 text-xs font-medium px-3 py-1 rounded-full">
+            {tech}
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA bar -->
+      <div class="flex flex-wrap gap-4 items-center mt-2">
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-primary text-[var(--primary-dark)] font-semibold py-2 px-5 rounded no-underline transition-opacity hover:opacity-80"
+          >
+            Voir le site en ligne
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        )}
+        <a
+          href="/projects"
+          class="inline-flex items-center gap-2 text-sm text-[var(--text-color)] opacity-70 hover:opacity-100 hover:text-primary transition-all no-underline"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          Retour aux projets
+        </a>
+      </div>
+    </header>
+
+    <!-- Thumbnail -->
+    <div class="w-full rounded-xl overflow-hidden border border-primary/20 mt-2">
+      <img
+        src={project.thumbnail}
+        alt={`Aperçu du projet ${project.title}`}
+        width="800"
+        height="450"
+        loading="eager"
+        class="w-full h-auto object-cover"
+      />
+    </div>
+
+    <!-- Description -->
+    <section class="w-full p-6 flex flex-col gap-4 border border-primary rounded-[10px]">
+      <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">
+        Description
+      </h2>
+      <div class="flex flex-col gap-3">
+        {project.detailedDescription.map((para) => (
+          <p class="text-[var(--text-color)] leading-relaxed">{para}</p>
+        ))}
+      </div>
+      <div class="mt-2 pt-4 border-t border-primary/20">
+        <p class="text-sm text-[var(--text-color)] opacity-70">
+          <span class="font-semibold opacity-100">Rôle :</span> {project.role}
+        </p>
+      </div>
+    </section>
+
+    <!-- Screenshots -->
+    {project.screenshots.length > 0 && (
+      <section class="w-full p-6 flex flex-col gap-4 border border-primary rounded-[10px]">
+        <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">
+          Captures d'écran
+        </h2>
+        <div class="grid gap-6 grid-cols-1 md:grid-cols-2">
+          {project.screenshots.map((src, i) => (
+            <div class="rounded-lg overflow-hidden border border-primary/20">
+              <img
+                src={src}
+                alt={`Capture d'écran ${i + 1} – ${project.title}`}
+                width="800"
+                height="450"
+                loading="lazy"
+                class="w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Challenges -->
+    {project.challenges && project.challenges.length > 0 && (
+      <section class="w-full p-6 flex flex-col gap-4 border border-primary rounded-[10px]">
+        <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">
+          Défis &amp; Solutions
+        </h2>
+        <ul class="flex flex-col gap-6 list-none m-0 p-0">
+          {project.challenges.map(({ problem, solution }) => (
+            <li class="flex flex-col gap-2 p-4 rounded-[10px] bg-[var(--secondary-background-color)]">
+              <p class="font-semibold text-primary text-sm uppercase tracking-wide">Défi</p>
+              <p class="text-[var(--text-color)]">{problem}</p>
+              <p class="font-semibold text-secondary text-sm uppercase tracking-wide mt-2">Solution</p>
+              <p class="text-[var(--text-color)]">{solution}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+
+  <!-- SEO canonical + structured data -->
+  <link rel="canonical" href={canonicalUrl} slot="head" />
+</Layout>

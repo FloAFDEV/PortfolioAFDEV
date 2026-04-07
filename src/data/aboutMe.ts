@@ -1,34 +1,31 @@
 export const aboutMe = {
-  name: 'Soy Stron',
-  profession: 'Software Developer',
-  description: 'Passionate about building web applications and learning new technologies.',
+  name: 'Je suis Florent Perez',
+  profession: 'Développeur Full Stack',
+  description:
+    'Je conçois des applications web utiles, performantes et pensées pour répondre à de vrais besoins métier.',
   bio: {
     paragraphs: [
-      "I'm a passionate software developer with over 5 years of experience in building web applications. I specialize in JavaScript and have a strong background in both frontend and backend development.",
-      "I enjoy working on challenging projects and continuously learning new technologies. In my free time, I love traveling, cooking, and gaming.",
-    ]
+      'Entré dans le secteur des transports publics en 2000 en tant que conducteur, j’ai évolué vers des fonctions opérationnelles puis vers un poste de chargé de signalétique. Cette expérience de terrain m’a permis de développer une compréhension approfondie des flux voyageurs, des enjeux d’accessibilité et des problématiques organisationnelles.',
+      'En parallèle, j’ai entrepris une reconversion dans le développement web, que j’ai concrétisée par l’obtention d’un diplôme de développeur full stack en 2024. Aujourd’hui, je conçois des applications web modernes en combinant compétences techniques et expérience terrain afin de proposer des solutions pragmatiques et adaptées aux besoins réels des utilisateurs.',
+      'Je m’attache particulièrement à la performance, à l’ergonomie et à la qualité des interfaces, avec une approche centrée sur l’expérience utilisateur et l’efficacité fonctionnelle.',
+    ],
   },
-  skills: ['JavaScript', 'TypeScript', 'React', 'Node.js', 'Python'],
-  hobbies: ['Traveling', 'Cooking', 'Gaming'],
+  skills: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'Supabase', 'TailwindCSS'],
+  hobbies: ['Développement de projets personnels', 'Veille technologique', 'Optimisation UX/UI'],
   profile: {
     picture: '/profile.jpg',
-    altText: "John Doe's Profile Picture",
+    altText: 'Photo de profil de Florent Perez',
   },
   banner: {
     image: 'https://picsum.photos/id/4/750/200',
-    altText: 'Technology Banner',
+    altText: 'Bannière technologique',
   },
   contact: {
-    email: 'JohnDoe@example.com',
-    phone: '+1234567890',
-  }, 
+    email: 'afdevflo@gmail.com',
+    phone: '',
+  },
   socialMedia: {
-    linkedin: 'https://github.com/elstron',
-    github: 'https://github.com/elstron',
-    youtube: 'https://www.youtube.com/@Stron_',
-    x: 'https://x.com/Stron__',
-    website: 'https://github.com/elstron'
-    //facebook: 'https://www.facebook.com/JohnDoe',
-    //instagram: 'https://www.instagram.com/JohnDoe',
-  }
+    linkedin: 'https://www.linkedin.com/in/florent-perez-559524242/',
+    github: 'https://github.com/FloAFDEV',
+  },
 };

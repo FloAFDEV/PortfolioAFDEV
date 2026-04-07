@@ -1,29 +1,22 @@
 export const experience = [
   {
-    company: 'Tech Solutions Inc.',
-    position: 'Senior Software Developer',
-    duration: 'January 2020 - Present',
+    company: 'Projets personnels & freelance',
+    position: 'Développeur Full Stack',
+    duration: '2024 – Présent',
     responsibilities: [
-      'Lead a team of developers to design and implement web applications using React and Node.js.',
-      'Collaborate with cross-functional teams',
+      'Conception et développement d’applications web modernes avec React et Next.js.',
+      'Développement backend avec Node.js et mise en place de bases de données via Supabase et PostgreSQL.',
+      'Création d’interfaces utilisateur responsives et optimisées avec une attention particulière à l’UX et aux performances.',
     ],
   },
   {
-    company: 'Innovatech Ltd.',
-    position: 'Software Developer',
-    duration: 'June 2017 - December 2019',
+    company: 'Transports publics',
+    position: 'Manager opérationnel / Chargé de signalétique',
+    duration: '1998 – 2023',
     responsibilities: [
-      'Developed and maintained web applications using JavaScript, HTML, and CSS.',
-      'Worked closely with designers',
+      'Encadrement et coordination d’équipes dans un environnement opérationnel.',
+      'Analyse et gestion des flux voyageurs, avec un focus sur l’accessibilité et l’orientation des usagers.',
+      'Participation à l’organisation et à l’optimisation des dispositifs de signalétique afin d’améliorer le parcours voyageur.',
     ],
   },
-  {
-    company: 'Web Solutions Co.',
-    position: 'Junior Software Developer',
-    duration: 'January 2015 - May 2017',
-    responsibilities: [
-      'Assisted in the development of web applications and performed bug fixes.',
-      'Contributed to the documentation of code ',
-    ],
-  }
-]
+];

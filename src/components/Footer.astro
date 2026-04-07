@@ -1,19 +1,17 @@
-<footer>
-  <p>&copy; 2025 Stron <a href="https://portfolio.stron.me">Contacto</a></p>
-</footer>
 
-<style>
-  footer {
-    text-align: center;
-    padding: 20px;
-    color: var(--text-color);
-    a {
-      color: var(--primary-color);
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-        color: currentColor;
-      }
-    }
-  }
-</style>
+<footer class="text-center py-5 text-[var(--text-color)] flex flex-col items-center gap-3">
+  <a href="/" aria-label="FloAFDEV – Accueil" class="hover:opacity-80 transition-opacity inline-block">
+    <img
+      src="/logo-light.png"
+      alt="Logo AFDEV"
+      width="80"
+      height="40"
+      class="h-8 w-auto object-contain"
+      loading="lazy"
+    />
+  </a>
+  <p class="text-sm opacity-70">
+    &copy; 2025 Florent Perez
+    <span class="text-primary italic ml-1">— FloAFDEV</span>
+  </p>
+</footer>

@@ -2,67 +2,53 @@
 import { aboutMe } from '../../data/aboutMe';
 ---
 
-<section id="hero">
-  <header class="hero-header">
-    <picture class="hero-banner">
+<section
+  id="hero"
+  class="flex flex-col items-center text-center md:grid md:items-start md:text-left md:gap-x-[33px]"
+  style="grid-template-areas: 'headerHero headerHero' 'pictureHero contentHero'; grid-template-columns: auto 1fr;"
+>
+  <!-- Banner -->
+  <header class="w-full overflow-hidden rounded-[7px]" style="grid-area: headerHero;">
+    <picture class="aspect-[700/150] overflow-hidden block">
       <img
         src={aboutMe.banner.image}
         alt={aboutMe.banner.altText}
         loading="lazy"
         width="750"
         height="150"
+        class="w-full h-full object-cover"
       />
     </picture>
   </header>
-  <picture class="hero-logo">
-    <img src={aboutMe.profile.picture} alt={aboutMe.profile.altText} width="200" height="200" />
+
+  <!-- Avatar -->
+  <picture
+    class="w-full max-w-[200px] overflow-hidden rounded-full aspect-square -mt-[30px]"
+    style="grid-area: pictureHero;"
+  >
+    <img
+      src={aboutMe.profile.picture}
+      alt={aboutMe.profile.altText}
+      width="200"
+      height="200"
+      class="h-full object-cover rounded-full border-2 border-[#5a5353]"
+    />
   </picture>
-  <div class="hero-content">
-    <h1>{aboutMe.name}</h1>
-    <p>
+
+  <!-- Content -->
+  <div
+    class="flex flex-col gap-[10px] md:items-start items-center"
+    style="grid-area: contentHero;"
+  >
+    <h1 class="text-2xl">{aboutMe.name}</h1>
+    <p class="max-w-[600px] text-[1.2em] text-[var(--text-color)]">
       {aboutMe.description}
     </p>
-    <a href={`mailto:${aboutMe.contact.email}`} data-cta="contact me">Contact Me</a>
+    <a
+      href={`mailto:${aboutMe.contact.email}`}
+      class="inline-block py-[10px] px-5 bg-primary text-white no-underline rounded border-2 border-transparent transition-colors duration-300 hover:bg-transparent hover:text-primary hover:border-primary hover:underline w-fit"
+    >
+      Me contacter
+    </a>
   </div>
 </section>
-
-<style>
-  #hero {
-    width: 100%;
-    .hero-banner {
-      width: 100%;
-      img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-      }
-    }
-    .hero-content {
-      h1 {
-        font-size: 2.5em;
-      }
-      p {
-        max-width: 600px;
-        font-size: 1.2em;
-        color: var(--text-color);
-      }
-      a[data-cta] {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: var(--primary-color);
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-        width: fit-content;
-
-        &:hover {
-          background-color: transparent;
-          color: var(--primary-color);
-          border: 2px solid var(--primary-color);
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-</style>

@@ -1,23 +1,111 @@
-export const projects = [
+export interface Project {
+  slug: string;
+  title: string;
+  shortDescription: string;
+  detailedDescription: string[];
+  thumbnail: string;
+  screenshots: string[];
+  technologies: string[];
+  role: string;
+  liveUrl?: string;
+  challenges?: { problem: string; solution: string }[];
+}
+
+export const projects: Project[] = [
   {
-    title: "Project 1",
-    description: "This project is a web application built using React and Node.js. It allows users to create and manage their tasks efficiently",
-    image: "https://picsum.photos/250/201",
-    link: "https://example.com/project1",
-    stack: ['React', 'Node.js', 'MongoDB']
+    slug: 'aurelia-desvaux',
+    title: 'Aurélia Desvaux',
+    shortDescription:
+      'Site vitrine pour une thérapeute en Hypnose, PNL & EFT à Valbonne – Sophia-Antipolis.',
+    detailedDescription: [
+      "Conception et développement du site officiel d'Aurélia Desvaux, praticienne en thérapies brèves (Hypnose Ericksonienne, PNL, EFT) basée à Valbonne / Sophia-Antipolis.",
+      "L'objectif était de créer une identité visuelle douce et professionnelle, de présenter les accompagnements proposés avec clarté, et d'intégrer un système de prise de rendez-vous directement accessible depuis le site.",
+    ],
+    thumbnail: '/projects/aurelia-desvaux-thumb.png',
+    screenshots: [
+      '/projects/aurelia-desvaux-thumb.png',
+      '/projects/aurelia-desvaux-thumb.png',
+    ],
+    technologies: ['Next.js', 'React', 'TypeScript', 'TailwindCSS'],
+    role: 'Développement full stack, intégration du design, déploiement Vercel',
+    liveUrl: 'https://aurelia-desvaux.fr',
+    challenges: [
+      {
+        problem: "Créer des animations d'entrée fluides et progressives sans impacter les performances.",
+        solution: "Animations CSS keyframes légères déclenchées au scroll, respectant prefers-reduced-motion.",
+      },
+    ],
   },
   {
-    title: "Project 2",
-    description: "This project is a web application built using Python and Django. It features a user-friendly interface.",
-    link: "https://via.placeholder.com/150",
-    image: "https://picsum.photos/252/200",
-    stack: ['Python', 'Django', 'PostgreSQL']
+    slug: 'lylusio',
+    title: 'Lylusio',
+    shortDescription:
+      "Site vitrine pour une astrologue & thérapeute énergétique (Reiki) à Toulouse.",
+    detailedDescription: [
+      "Développement du site de Lylusio, dédié à Emilie, astrologue consciente et praticienne Reiki à Toulouse. Le site présente son approche thérapeutique, ses accompagnements (astrologie, Reiki, thérapie holistique) et ses ressources.",
+      "L'accent a été mis sur une navigation claire et une atmosphère visuelle en accord avec l'univers de la praticienne, tout en assurant un référencement naturel solide.",
+    ],
+    thumbnail: '/projects/lylusio-thumb.png',
+    screenshots: [
+      '/projects/lylusio-thumb.png',
+      '/projects/lylusio-screen2.png',
+    ],
+    technologies: ['Next.js', 'React', 'TypeScript', 'TailwindCSS'],
+    role: 'Développement full stack, design, déploiement Vercel',
+    liveUrl: 'https://lylusio.fr',
+    challenges: [
+      {
+        problem: "Traduire visuellement un univers spirituel et apaisant en code.",
+        solution: "Palette de couleurs douces, typographie soignée et animations subtiles pour une expérience immersive.",
+      },
+    ],
   },
   {
-    title: "Project 3",
-    description: "This project is a web application built using JavaScript and Vue.js. It features a user-friendly interface.",
-    image: "https://picsum.photos/251/200",
-    link: "https://example.com/project3",
-    stack: ['JavaScript', 'Vue.js', 'Firebase']
-  }
-]
+    slug: 'osteopraxis',
+    title: 'OsteoPraxis',
+    shortDescription:
+      "Application SaaS pour ostéopathes : moins d'administratif, plus de patients.",
+    detailedDescription: [
+      "OsteoPraxis est une application web complète conçue pour les ostéopathes et praticiens en thérapie manuelle. Elle centralise la gestion des patients, des séances et des dossiers, sans nécessiter de stockage cloud externe.",
+      "L'interface a été pensée pour être ultra-simple et rapide à prendre en main, avec une attention particulière à la confidentialité des données médicales.",
+    ],
+    thumbnail: '/projects/osteopraxis-thumb.png',
+    screenshots: [
+      '/projects/osteopraxis-thumb.png',
+      '/projects/osteopraxis-thumb.png',
+    ],
+    technologies: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'Supabase', 'PostgreSQL'],
+    role: 'Développement full stack, architecture base de données, déploiement',
+    liveUrl: 'https://osteopraxis-app-main.vercel.app',
+    challenges: [
+      {
+        problem: "Garantir la confidentialité des données médicales sans cloud obligatoire.",
+        solution: "Row Level Security Supabase + chiffrement des données sensibles côté serveur.",
+      },
+    ],
+  },
+  {
+    slug: 'garage-mendonca',
+    title: 'Garage Mendonça',
+    shortDescription:
+      "Site vitrine pour un garage automobile expert japonaises & boîte automatique à Drémil-Lafage.",
+    detailedDescription: [
+      "Conception et développement du site du Garage Mendonça, spécialiste des véhicules japonais et de la boîte automatique depuis 2001 à Drémil-Lafage (Haute-Garonne).",
+      "Le site met en avant les services proposés, les statistiques clés (30+ ans d'expérience, 2 000+ réparations, 98% clients satisfaits) et intègre un formulaire de demande de devis gratuit.",
+    ],
+    thumbnail: '/projects/garage-mendonca-thumb.png',
+    screenshots: [
+      '/projects/garage-mendonca-thumb.png',
+      '/projects/garage-mendonca-screen2.png',
+    ],
+    technologies: ['Next.js', 'React', 'TypeScript', 'TailwindCSS'],
+    role: 'Développement, SEO local, intégration formulaire de contact',
+    liveUrl: 'https://garagemendonca.vercel.app',
+    challenges: [
+      {
+        problem: "Maximiser le score Lighthouse pour améliorer le référencement local.",
+        solution: "Optimisation des images, lazy loading, et rendu statique pour un score performance > 95.",
+      },
+    ],
+  },
+];

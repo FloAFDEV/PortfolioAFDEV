@@ -1,35 +1,40 @@
 ---
-import ProjectCard, { type Project } from '../projects/ProjectCard.astro';
-import { projects } from '../../data/projects.js';
+import ProjectCard from '../projects/ProjectCard.astro';
+import { projects } from '../../data/projects';
+
+// Show up to 4 on homepage
+const featured = projects.slice(0, 4);
 ---
 
-<section id="projects">
-  <h2>Projects</h2>
-  <ul class="card-list">
-    {
-      projects.map((project: Project) => (
-        <li>
-          <ProjectCard {...project} />
-        </li>
-      ))
-    }
-  </ul>
-</section>
+<section id="projects" class="w-full p-4 flex flex-col border border-primary rounded-[10px]">
+  <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">
+    Projets
+  </h2>
 
-<style>
-  #projects {
-    .card-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(228px, 1fr));
-      gap: 2rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      li {
-        &:hover {
-          transform: translateY(-5px);
-        }
-      }
-    }
-  }
-</style>
+  <ul
+    class="list-none m-0 p-0 grid gap-6"
+    style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));"
+  >
+    {featured.map((project) => (
+      <li>
+        <ProjectCard
+          slug={project.slug}
+          title={project.title}
+          shortDescription={project.shortDescription}
+          thumbnail={project.thumbnail}
+          technologies={project.technologies}
+        />
+      </li>
+    ))}
+  </ul>
+
+  <div class="mt-6 flex justify-center">
+    <a
+      href="/projects"
+      class="inline-flex items-center gap-2 border border-primary text-primary font-semibold py-2 px-5 rounded no-underline transition-colors duration-200 hover:bg-primary hover:text-primary-dark focus-visible:outline-2 focus-visible:outline-primary"
+    >
+      Tous les projets
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+  </div>
+</section>

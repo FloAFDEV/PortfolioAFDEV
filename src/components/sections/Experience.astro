@@ -3,53 +3,18 @@ import { experience } from '../../data/experience';
 import ExperienceCard, { type ExperienceItem } from '../Experience/ExperienceCard.astro';
 ---
 
-<section id="experience">
-  <h2>Experience</h2>
-  <ul class="timeline">
+<section id="experience" class="w-full p-4 flex flex-col gap-8 border border-primary rounded-[10px]">
+  <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">
+    Expérience
+  </h2>
+
+  <ul class="list-none m-0 p-0 relative before:content-[''] before:absolute before:left-[14px] before:top-0 before:bottom-0 before:w-0.5 before:bg-primary">
     {
-      experience.map((experience: ExperienceItem) => (
-        <li class="timeline-item">
-          <ExperienceCard {...experience} />
+      experience.map((exp: ExperienceItem) => (
+        <li class="relative mb-5 pl-10 before:content-[''] before:absolute before:left-[10px] before:top-[5px] before:w-[10px] before:h-[10px] before:bg-primary before:rounded-full">
+          <ExperienceCard {...exp} />
         </li>
       ))
     }
   </ul>
 </section>
-
-<style>
-  #experience {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    .timeline {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      &:before {
-        content: '';
-        position: absolute;
-        left: 14px;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background-color: var(--primary-color);
-      }
-      .timeline-item {
-        position: relative;
-        margin-bottom: 20px;
-        padding-left: 40px;
-        &:before {
-          content: '';
-          position: absolute;
-          left: 10px;
-          top: 5px;
-          width: 10px;
-          height: 10px;
-          background-color: var(--primary-color);
-          border-radius: 50%;
-        }
-      }
-    }
-  }
-</style>

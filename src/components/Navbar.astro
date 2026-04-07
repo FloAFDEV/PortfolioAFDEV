@@ -1,0 +1,60 @@
+---
+const navLinks = [
+  { label: 'Accueil',    href: '/' },
+  { label: 'Expérience', href: '/#experience' },
+  { label: 'Projets',    href: '/projects' },
+  { label: 'À propos',   href: '/#about' },
+  { label: 'Contact',    href: `mailto:afdevflo@gmail.com` },
+];
+
+const { pathname } = Astro.url;
+---
+
+<nav class="w-full border-b border-primary/30 bg-[var(--background-color)] sticky top-0 z-50">
+  <div class="max-w-[1200px] mx-auto px-4 py-1 flex items-center justify-between gap-4 flex-wrap">
+
+    <!-- Logo -->
+    <a
+      href="/"
+      class="flex items-center hover:opacity-80 transition-opacity"
+      aria-label="FloAFDEV – Retour à l'accueil"
+    >
+      <img
+        src="/logo-light.png"
+        alt="Logo AFDEV"
+        width="180"
+        height="90"
+        class="h-20 w-auto object-contain"
+        loading="eager"
+      />
+    </a>
+
+    <!-- Links -->
+    <ul class="flex flex-wrap gap-x-6 gap-y-2 list-none m-0 p-0" role="list">
+      {navLinks.map(({ label, href }) => {
+        const isActive =
+          href === '/'
+            ? pathname === '/'
+            : !href.startsWith('mailto') && pathname.startsWith(href.split('#')[0]) && href !== '/';
+        return (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                'text-sm no-underline transition-colors duration-200 rounded-sm',
+                'hover:text-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2',
+                isActive
+                  ? 'text-primary font-semibold'
+                  : 'text-[var(--text-color)] opacity-80',
+              ]}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+
+  </div>
+</nav>

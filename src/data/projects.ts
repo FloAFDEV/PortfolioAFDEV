@@ -8,6 +8,7 @@ export interface Project {
   technologies: string[];
   role: string;
   liveUrl?: string;
+  status?: 'live' | 'wip';
   challenges?: { problem: string; solution: string }[];
 }
 
@@ -24,10 +25,11 @@ export const projects: Project[] = [
     thumbnail: '/projects/aurelia-desvaux-thumb.png',
     screenshots: [
       '/projects/aurelia-desvaux-thumb.png',
-      '/projects/aurelia-desvaux-thumb.png',
+      '/projects/aurelia-desvaux-screen2.png',
     ],
-    technologies: ['Next.js', 'React', 'TypeScript', 'TailwindCSS'],
+    technologies: ['Next.js 15', 'React 18', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'react-hook-form', 'Zod'],
     role: 'Développement full stack, intégration du design, déploiement Vercel',
+    status: 'live',
     liveUrl: 'https://aurelia-desvaux.fr',
     challenges: [
       {
@@ -50,8 +52,9 @@ export const projects: Project[] = [
       '/projects/lylusio-thumb.png',
       '/projects/lylusio-screen2.png',
     ],
-    technologies: ['Next.js', 'React', 'TypeScript', 'TailwindCSS'],
+    technologies: ['Next.js 15', 'React 18', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'react-icons', 'react-hook-form', 'Zod'],
     role: 'Développement full stack, design, déploiement Vercel',
+    status: 'live',
     liveUrl: 'https://lylusio.fr',
     challenges: [
       {
@@ -72,10 +75,11 @@ export const projects: Project[] = [
     thumbnail: '/projects/osteopraxis-thumb.png',
     screenshots: [
       '/projects/osteopraxis-thumb.png',
-      '/projects/osteopraxis-thumb.png',
+      '/projects/osteopraxis-screen2.png',
     ],
-    technologies: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'Supabase', 'PostgreSQL'],
+    technologies: ['Vite', 'React 18', 'TypeScript', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'shadcn/ui', 'react-router-dom', 'jsPDF', 'Playwright'],
     role: 'Développement full stack, architecture base de données, déploiement',
+    status: 'live',
     liveUrl: 'https://osteopraxis-app-main.vercel.app',
     challenges: [
       {
@@ -88,18 +92,19 @@ export const projects: Project[] = [
     slug: 'garage-mendonca',
     title: 'Garage Mendonça',
     shortDescription:
-      "Site vitrine pour un garage automobile expert japonaises & boîte automatique à Drémil-Lafage.",
+      "Site vitrine pour un garage automobile expert japonaises & boîte automatique à Drémil-Lafage. (En cours)",
     detailedDescription: [
       "Conception et développement du site du Garage Mendonça, spécialiste des véhicules japonais et de la boîte automatique depuis 2001 à Drémil-Lafage (Haute-Garonne).",
-      "Le site met en avant les services proposés, les statistiques clés (30+ ans d'expérience, 2 000+ réparations, 98% clients satisfaits) et intègre un formulaire de demande de devis gratuit.",
+      "Le site met en avant les services proposés, les statistiques clés (30+ ans d'expérience, 2 000+ réparations, 98% clients satisfaits) et intègre un formulaire de demande de devis gratuit. Projet en cours de développement.",
     ],
     thumbnail: '/projects/garage-mendonca-thumb.png',
     screenshots: [
       '/projects/garage-mendonca-thumb.png',
       '/projects/garage-mendonca-screen2.png',
     ],
-    technologies: ['Next.js', 'React', 'TypeScript', 'TailwindCSS'],
+    technologies: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'dnd-kit', 'lucide-react'],
     role: 'Développement, SEO local, intégration formulaire de contact',
+    status: 'wip',
     liveUrl: 'https://garagemendonca.vercel.app',
     challenges: [
       {

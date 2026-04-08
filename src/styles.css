@@ -7,7 +7,7 @@
   --color-primary-light:#f8f9fa;
   --color-secondary:    #2e78c7;
 
-  --animate-carousel: carousel 10s linear infinite forwards;
+  --animate-carousel: carousel 12s linear infinite;
 }
 
 @keyframes carousel {
@@ -18,9 +18,9 @@
 /* ─── CSS vars (light-dark – cannot live in @theme) ─────── */
 :root {
   color-scheme: light dark;
-  --background-color:            light-dark(#c0cef3, #16171f);
-  --secondary-background-color:  light-dark(#f8f9fa, #242633);
-  --text-color:                  light-dark(#333,    #f2f2f2);
+  --background-color:            light-dark(#e8edfc, #1e2030);
+  --secondary-background-color:  light-dark(#f4f7ff, #2a2d45);
+  --text-color:                  light-dark(#1a1a2e, #f2f2f2);
 }
 
 /* ─── Base ───────────────────────────────────────────────── */
@@ -33,6 +33,7 @@ body {
   color: var(--text-color);
   min-height: 100dvh;
   overflow-x: hidden;
+  max-width: 100vw;
   display: grid;
   grid-template-areas: 'nav nav' 'main main' 'footer footer';
   grid-template-columns: 1fr 1fr;
@@ -45,6 +46,13 @@ footer { grid-area: footer; }
 
 p { text-wrap: pretty; }
 h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+
+/* ─── Light mode: darken primary for contrast ────────────── */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-primary: #8a6e00;
+  }
+}
 
 /* ─── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {

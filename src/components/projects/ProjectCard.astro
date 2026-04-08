@@ -6,7 +6,7 @@ interface Props extends Pick<Project, 'slug' | 'title' | 'shortDescription' | 't
 const { slug, title, shortDescription, thumbnail, technologies, status } = Astro.props;
 ---
 
-<article class="relative flex flex-col h-full rounded-[10px] bg-[var(--secondary-background-color)] shadow-[0_2px_4px_rgba(0,0,0,0.1)] overflow-hidden transition-transform duration-300 hover:-translate-y-[5px]">
+<article class="relative flex flex-col h-full w-full min-w-0 rounded-[10px] bg-[var(--secondary-background-color)] shadow-[0_2px_4px_rgba(0,0,0,0.1)] overflow-hidden transition-transform duration-300 hover:-translate-y-[5px]">
   {status === 'wip' && (
     <div class="absolute top-3 right-3 z-10 bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow">
       En cours

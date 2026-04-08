@@ -17,12 +17,9 @@ import { projects } from '../../data/projects';
   </header>
 
   <!-- Grid -->
-  <ul
-    class="list-none m-0 p-0 grid gap-8"
-    style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));"
-  >
+  <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
     {projects.map((project) => (
-      <li>
+      <li class="min-w-0 flex flex-col">
         <ProjectCard
           slug={project.slug}
           title={project.title}

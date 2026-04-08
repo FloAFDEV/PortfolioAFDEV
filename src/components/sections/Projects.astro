@@ -11,12 +11,9 @@ const featured = projects.slice(0, 4);
     Projets
   </h2>
 
-  <ul
-    class="list-none m-0 p-0 grid gap-6"
-    style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));"
-  >
+  <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
     {featured.map((project) => (
-      <li>
+      <li class="min-w-0 flex flex-col">
         <ProjectCard
           slug={project.slug}
           title={project.title}

@@ -27,7 +27,14 @@ const canonicalUrl = new URL(`/projects/${project.slug}`, Astro.site ?? Astro.ur
   <article class="flex flex-col gap-10">
     <!-- Hero -->
     <header class="flex flex-col gap-4">
-      <h1 class="text-2xl sm:text-3xl font-bold text-[var(--text-color)]">{project.title}</h1>
+      <div class="flex items-center gap-3 flex-wrap">
+        <h1 class="text-2xl sm:text-3xl font-bold text-[var(--text-color)]">{project.title}</h1>
+        {project.status === 'wip' && (
+          <span class="bg-amber-500 text-white text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+            En cours
+          </span>
+        )}
+      </div>
       <p class="text-base sm:text-[1.15em] text-[var(--text-color)] opacity-80 max-w-[700px]">
         {project.shortDescription}
       </p>

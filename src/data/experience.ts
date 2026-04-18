@@ -2,7 +2,7 @@ export const experience = [
   {
     company: 'Projets personnels & freelance',
     position: 'Développeur Full Stack',
-    duration: '2024 – Présent',
+    duration: '2022 – Présent',
     responsibilities: [
       "Conception et développement d'applications web modernes avec React et Next.js.",
       "Développement backend avec Node.js et mise en place de bases de données via Supabase et PostgreSQL.",
@@ -12,7 +12,7 @@ export const experience = [
   {
     company: 'Transports publics',
     position: 'Manager opérationnel / Chargé de signalétique',
-    duration: '1998 – 2023',
+    duration: '2000 – Présent',
     responsibilities: [
       "Encadrement et coordination d'équipes dans un environnement opérationnel.",
       "Analyse et gestion des flux voyageurs, avec un focus sur l'accessibilité et l'orientation des usagers.",

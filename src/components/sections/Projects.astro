@@ -27,9 +27,9 @@ const total = projects.length;
     </a>
   </div>
 
-  <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
-    {featured.map((project, i) => (
-      <li class={`min-w-0 flex flex-col reveal reveal-delay-${i + 1}`}>
+  <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 gap-5 w-full stagger-group">
+    {featured.map((project) => (
+      <li class="min-w-0 flex flex-col stagger-item">
         <ProjectCard
           slug={project.slug}
           title={project.title}

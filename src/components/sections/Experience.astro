@@ -7,7 +7,7 @@ import ExperienceCard, { type ExperienceItem } from '../Experience/ExperienceCar
   <h2 class="section-title mb-8">Expérience</h2>
 
   <ul
-    class="list-none m-0 p-0 flex flex-col gap-0 relative"
+    class="list-none m-0 p-0 flex flex-col gap-0 relative stagger-group"
     style="padding-left: 1.75rem; margin-left: 0.25rem;"
   >
     <!-- Animated timeline line -->
@@ -18,8 +18,8 @@ import ExperienceCard, { type ExperienceItem } from '../Experience/ExperienceCar
     ></div>
 
     {
-      experience.map((exp: ExperienceItem, i: number) => (
-        <li class={`relative pb-8 last:pb-0 reveal reveal-delay-${Math.min(i+1,4)}`}>
+      experience.map((exp: ExperienceItem) => (
+        <li class="relative pb-8 last:pb-0 stagger-item">
           <!-- Gold dot with pulse -->
           <div
             class="absolute top-1"

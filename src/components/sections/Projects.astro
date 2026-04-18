@@ -3,15 +3,24 @@ import ProjectCard from '../projects/ProjectCard.astro';
 import { projects } from '../../data/projects';
 
 const featured = projects.slice(0, 4);
+const total = projects.length;
 ---
 
 <section id="projects" class="w-full glass-card px-6 py-8 reveal">
-  <div class="flex items-center justify-between gap-4 mb-8 flex-wrap">
-    <h2 class="section-title">Projets</h2>
+  <div class="flex items-start justify-between gap-4 mb-8 flex-wrap">
+    <div class="flex flex-col gap-1">
+      <h2 class="section-title">Projets</h2>
+      <p class="text-xs mono" style="color:var(--text-muted); padding-left:1.25rem;">
+        <span style="color:#F0A500;">{featured.length}</span>
+        <span> récents </span>
+        <span style="color:var(--text-faint);">/ {total} au total</span>
+      </p>
+    </div>
     <a
       href="/projects"
-      class="inline-flex items-center gap-1.5 text-sm font-semibold no-underline transition-all duration-200 cursor-pointer hover:opacity-80"
-      style="color: #F0A500; font-family: 'Space Grotesk', sans-serif;"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold no-underline
+             transition-all duration-200 cursor-pointer hover:gap-2.5 mt-1"
+      style="color:#F0A500; font-family:'Space Grotesk',sans-serif;"
     >
       Tous les projets
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>

@@ -38,7 +38,7 @@ const canonicalUrl = new URL(`/projects/${project.slug}`, Astro.site ?? Astro.ur
           </span>
         )}
       </div>
-      <p class="text-sm sm:text-base max-w-[700px]" style="color: #64748B;">
+      <p class="text-sm sm:text-base max-w-[700px]" style="color:var(--text-body);">
         {project.shortDescription}
       </p>
 
@@ -98,7 +98,7 @@ const canonicalUrl = new URL(`/projects/${project.slug}`, Astro.site ?? Astro.ur
       <h2 class="section-title mb-5">Description</h2>
       <div class="flex flex-col gap-3">
         {project.detailedDescription.map((para) => (
-          <p class="text-sm leading-relaxed" style="color: #64748B;">{para}</p>
+          <p class="text-sm leading-relaxed" style="color:var(--text-body);">{para}</p>
         ))}
       </div>
       <div
@@ -145,9 +145,9 @@ const canonicalUrl = new URL(`/projects/${project.slug}`, Astro.site ?? Astro.ur
               style="background: rgba(240,165,0,0.03); border: 1px solid rgba(240,165,0,0.08);"
             >
               <p class="text-[11px] font-bold uppercase tracking-widest mono" style="color: #F0A500;">// Défi</p>
-              <p class="text-sm leading-relaxed" style="color: #94A3B8;">{problem}</p>
+              <p class="text-sm leading-relaxed" style="color:var(--text-body);">{problem}</p>
               <p class="text-[11px] font-bold uppercase tracking-widest mono mt-1" style="color: #86EFAC;">// Solution</p>
-              <p class="text-sm leading-relaxed" style="color: #94A3B8;">{solution}</p>
+              <p class="text-sm leading-relaxed" style="color:var(--text-body);">{solution}</p>
             </li>
           ))}
         </ul>

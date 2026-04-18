@@ -28,6 +28,9 @@ const { title, description, image } = Astro.props;
     <slot name="head" />
   </head>
   <body>
+    <!-- Scroll progress bar -->
+    <div id="scroll-progress" role="progressbar" aria-hidden="true"></div>
+
     <Navbar />
     <main class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-6 sm:py-10 flex flex-col gap-10 sm:gap-14 md:gap-16 min-w-0 overflow-x-hidden">
       <slot />
@@ -35,18 +38,66 @@ const { title, description, image } = Astro.props;
     <Footer />
   </body>
   <script>
-    // Scroll-reveal with IntersectionObserver
-    const observer = new IntersectionObserver(
+    // ── Scroll progress bar ──────────────────────────────────
+    const bar = document.getElementById('scroll-progress') as HTMLElement;
+    function updateProgress() {
+      const s = document.documentElement;
+      const pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+
+    // ── Section reveal ───────────────────────────────────────
+    const revealObs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            revealObs.unobserve(e.target);
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach((el) => revealObs.observe(el));
+
+    // ── Counter animation ────────────────────────────────────
+    function animateCounter(el: Element) {
+      const target = parseInt(el.getAttribute('data-target') || '0', 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const dur = 900;
+      const start = performance.now();
+      function step(now: number) {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+        else {
+          el.textContent = target + suffix;
+          (el as HTMLElement).classList.add('popped');
+          setTimeout(() => (el as HTMLElement).classList.remove('popped'), 500);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    const counterObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            animateCounter(e.target);
+            counterObs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    document.querySelectorAll('.counter-num').forEach((el) => counterObs.observe(el));
+
+    // ── Terminal typewriter ──────────────────────────────────
+    const lines = document.querySelectorAll<HTMLElement>('.t-line');
+    lines.forEach((line, i) => {
+      setTimeout(() => line.classList.add('show'), 300 + i * 280);
+    });
   </script>
 </html>

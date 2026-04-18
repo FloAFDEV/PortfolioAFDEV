@@ -4,93 +4,116 @@ import { aboutMe } from '../../data/aboutMe';
 
 <section id="hero" class="relative w-full min-w-0 pt-2 pb-10 overflow-hidden">
 
-  <!-- Dot-grid background -->
+  <!-- Dot-grid -->
   <div class="dot-grid" aria-hidden="true"></div>
 
-  <!-- Ambient glow orb -->
+  <!-- Code-rain columns (matrix style) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
+    {['01', 'fn()', '{};', '=>', '[]', 'ts', 'const', 'async', '&&', 'npm'].map((txt, i) => (
+      <span
+        class="code-rain-col"
+        style={`left:${5 + i * 9.5}%; animation-duration:${7 + i * 1.3}s; animation-delay:${i * 0.9}s; opacity:0;`}
+      >{txt.repeat(12)}</span>
+    ))}
+  </div>
+
+  <!-- Ambient glow -->
   <div
     class="absolute pointer-events-none"
     aria-hidden="true"
-    style="top: -80px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(240,165,0,0.08) 0%, transparent 70%); border-radius: 50%;"
+    style="top:-60px; left:50%; transform:translateX(-50%); width:700px; height:320px;
+           background:radial-gradient(ellipse, rgba(240,165,0,0.07) 0%, transparent 70%);
+           border-radius:50%;"
   ></div>
 
-  <!-- Floating code snippets (decorative) -->
+  <!-- Floating code snippets -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
-    <span class="code-float" style="top:12%; left:4%;">const dev = new AFDEV();</span>
-    <span class="code-float" style="top:28%; right:5%; font-size:0.65rem;">type Stack = 'React' | 'Next.js' | 'Node'</span>
-    <span class="code-float" style="top:55%; left:2%; font-size:0.68rem;">git push origin main</span>
-    <span class="code-float" style="bottom:20%; right:3%; font-size:0.66rem;">async function solve(problem: Problem) &#123;</span>
-    <span class="code-float" style="bottom:38%; left:6%; font-size:0.63rem;">npm run build &amp;&amp; vercel deploy</span>
-    <span class="code-float" style="top:70%; right:8%; font-size:0.64rem;">return value &gt; expectation;</span>
+    <span class="code-float" style="top:11%; left:3%;">const dev = new AFDEV();</span>
+    <span class="code-float" style="top:26%; right:4%; font-size:.63rem;">type Stack = 'React' | 'Next.js' | 'Node'</span>
+    <span class="code-float" style="top:52%; left:2%; font-size:.67rem;">git push origin main</span>
+    <span class="code-float" style="bottom:22%; right:3%; font-size:.64rem;">async function solve(problem: Problem) &#123;</span>
+    <span class="code-float" style="bottom:40%; left:5%; font-size:.62rem;">npm run build &amp;&amp; vercel deploy</span>
+    <span class="code-float" style="top:72%; right:7%; font-size:.63rem;">return value &gt; expectation;</span>
   </div>
 
   <!-- Banner -->
-  <div class="relative w-full overflow-hidden rounded-2xl" style="height: 190px;">
+  <div class="relative w-full overflow-hidden rounded-2xl" style="height:195px;">
     <img
       src={aboutMe.banner.image}
       alt={aboutMe.banner.altText}
       loading="eager"
       width="1200"
-      height="190"
+      height="195"
       class="w-full h-full object-cover"
-      style="filter: brightness(0.35) saturate(0.5) sepia(0.2);"
+      style="filter:brightness(0.3) saturate(0.5) sepia(0.15);"
     />
     <div
       class="absolute inset-0"
-      style="background: linear-gradient(to bottom, transparent 20%, #070B12 100%);"
+      style="background:linear-gradient(to bottom, transparent 15%, #070B12 100%);"
       aria-hidden="true"
     ></div>
-    <!-- Scan line animation -->
+    <!-- Scan line -->
     <div
       class="absolute inset-x-0 h-[1px] pointer-events-none"
-      style="background: linear-gradient(to right, transparent, rgba(240,165,0,0.6), transparent); animation: scan 5s linear infinite; top: 0;"
+      style="background:linear-gradient(to right, transparent, rgba(240,165,0,0.55), transparent);
+             animation:scan 6s linear 1s infinite; top:0;"
       aria-hidden="true"
     ></div>
   </div>
 
   <!-- Avatar + Content -->
-  <div class="flex flex-col md:flex-row md:items-end gap-6 -mt-14 px-1 relative z-10">
-    <!-- Avatar with gold ring -->
+  <div class="flex flex-col md:flex-row md:items-end gap-6 -mt-16 px-1 relative z-10">
+
+    <!-- Avatar with orbit ring -->
     <div class="flex-shrink-0 self-center md:self-end pl-2">
-      <div
-        class="relative w-[115px] h-[115px] sm:w-[132px] sm:h-[132px]"
-        style="border-radius: 50%; padding: 3px; background: linear-gradient(135deg, #F0A500 0%, #C88700 50%, #FFD166 100%); box-shadow: 0 0 0 4px rgba(240,165,0,0.12), 0 0 24px rgba(240,165,0,0.2);"
-      >
-        <img
-          src={aboutMe.profile.picture}
-          alt={aboutMe.profile.altText}
-          width="132"
-          height="132"
-          class="w-full h-full object-cover rounded-full"
-          style="background: #070B12;"
-        />
+      <div class="relative w-[120px] h-[120px] sm:w-[138px] sm:h-[138px]">
+        <!-- Orbit ring -->
+        <div class="orbit-ring" aria-hidden="true"></div>
+        <div class="orbit-dot" aria-hidden="true"></div>
+        <!-- Gold gradient border -->
+        <div
+          class="w-full h-full"
+          style="border-radius:50%; padding:3px;
+                 background:linear-gradient(135deg,#F0A500 0%,#C88700 50%,#FFD166 100%);
+                 box-shadow:0 0 0 4px rgba(240,165,0,0.1), 0 0 28px rgba(240,165,0,0.22);"
+        >
+          <img
+            src={aboutMe.profile.picture}
+            alt={aboutMe.profile.altText}
+            width="138"
+            height="138"
+            class="w-full h-full object-cover rounded-full"
+            style="background:#070B12;"
+          />
+        </div>
       </div>
     </div>
 
-    <!-- Text -->
+    <!-- Text content -->
     <div class="flex flex-col gap-2 flex-1 min-w-0 md:pb-1">
-      <div class="flex flex-wrap items-center gap-3 mt-4 md:mt-0">
+      <div class="flex flex-wrap items-center gap-3 mt-6 md:mt-0">
         <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text">
           {aboutMe.name}
         </h1>
+        <!-- Live coding badge -->
         <span
           class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full"
-          style="background: rgba(240,165,0,0.1); color: #F0A500; border: 1px solid rgba(240,165,0,0.3);"
+          style="background:rgba(240,165,0,0.1); color:#F0A500; border:1px solid rgba(240,165,0,0.3);"
         >
-          <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: #F0A500;"></span>
+          <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:#F0A500;"></span>
           Disponible
         </span>
       </div>
 
       <!-- Typewriter profession -->
-      <p class="text-[#94A3B8] text-sm sm:text-base font-medium flex items-center gap-2">
-        <span class="text-[#F0A500]">$</span>
-        <span class="typewriter text-[#EDEFF4] font-mono text-sm sm:text-base">
+      <p class="text-sm sm:text-base font-medium flex items-center gap-2">
+        <span style="color:#F0A500; font-family:'JetBrains Mono',monospace;">$</span>
+        <span class="typewriter font-mono text-sm sm:text-base" style="color:#F0F2F7;">
           {aboutMe.profession}
         </span>
       </p>
 
-      <p class="text-[#64748B] text-sm leading-relaxed max-w-[560px] hidden sm:block">
+      <p class="text-sm leading-relaxed max-w-[560px] hidden sm:block" style="color:var(--text-body);">
         {aboutMe.description}
       </p>
 
@@ -107,48 +130,58 @@ import { aboutMe } from '../../data/aboutMe';
     </div>
   </div>
 
-  <!-- Stats row -->
-  <div
-    class="grid grid-cols-3 gap-3 mt-8 px-1"
-  >
+  <!-- Animated stats row -->
+  <div class="grid grid-cols-3 gap-3 mt-8 px-1">
     {[
-      { value: '5+', label: 'ans de reconversion' },
-      { value: '6+', label: 'projets livrés' },
-      { value: '100%', label: 'passion' },
-    ].map(({ value, label }) => (
+      { value: 3,   suffix: '+',  label: 'ans dev actif',   sub: 'depuis 2022' },
+      { value: 28,  suffix: '',   label: 'projets',         sub: 'livrés' },
+      { value: 100, suffix: '%',  label: 'passion',         sub: 'toujours' },
+    ].map(({ value, suffix, label, sub }) => (
       <div
         class="flex flex-col items-center text-center p-3 rounded-xl"
-        style="background: rgba(240,165,0,0.04); border: 1px solid rgba(240,165,0,0.1);"
+        style="background:rgba(240,165,0,0.04); border:1px solid rgba(240,165,0,0.1);"
       >
-        <span class="text-xl sm:text-2xl font-bold" style="font-family:'Space Grotesk',sans-serif; color:#F0A500;">{value}</span>
-        <span class="text-[11px] sm:text-xs mt-0.5" style="color: #475569;">{label}</span>
+        <span
+          class="counter-num text-2xl sm:text-3xl font-bold"
+          data-target={value}
+          data-suffix={suffix}
+          style="font-family:'Space Grotesk',sans-serif; color:#F0A500;"
+        >0{suffix}</span>
+        <span class="text-[11px] font-semibold mt-0.5" style="color:var(--text-body);">{label}</span>
+        <span class="text-[10px]" style="color:var(--text-muted);">{sub}</span>
       </div>
     ))}
   </div>
 
   <!-- Terminal -->
   <div class="mt-8 px-1">
-    <div class="terminal-window">
+    <div class="terminal-window text-xs sm:text-sm">
       <div class="terminal-bar">
         <span class="terminal-dot" style="background:#FF5F57;"></span>
         <span class="terminal-dot" style="background:#FEBC2E;"></span>
         <span class="terminal-dot" style="background:#28C840;"></span>
-        <span class="text-[11px] ml-3" style="color:#475569; font-family:'JetBrains Mono',monospace;">florent@afdev ~ zsh</span>
+        <span class="ml-3 text-[11px]" style="color:#4E6070; font-family:'JetBrains Mono',monospace;">
+          florent@afdev — ~/portfolio — zsh
+        </span>
       </div>
-      <div class="terminal-body text-xs sm:text-sm">
-        <div><span class="t-prompt">❯</span> <span class="t-cmd">whoami</span></div>
-        <div class="t-out">Florent Perez — Développeur Full Stack</div>
-        <div class="mt-2"><span class="t-prompt">❯</span> <span class="t-cmd">cat</span> <span class="t-string">./stack.json</span></div>
-        <div class="t-out">&#123;</div>
-        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"frontend"</span>: [<span class="t-string">"React"</span>, <span class="t-string">"Next.js"</span>, <span class="t-string">"Astro"</span>],</div>
-        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"backend"</span>: [<span class="t-string">"Node.js"</span>, <span class="t-string">"TypeScript"</span>, <span class="t-string">"Supabase"</span>],</div>
-        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"style"</span>: <span class="t-string">"TailwindCSS"</span></div>
-        <div class="t-out">&#125;</div>
-        <div class="mt-2"><span class="t-prompt">❯</span> <span class="t-cmd">git log</span> <span class="t-type">--oneline</span> <span class="t-type">-3</span></div>
-        <div class="t-out"><span class="t-string">a3f7b2c</span> feat: build innovative &amp; performant web apps</div>
-        <div class="t-out"><span class="t-string">9c1d4e8</span> fix: optimize for real-world business needs</div>
-        <div class="t-out"><span class="t-string">2f8a1b7</span> init: passion-driven full stack development</div>
-        <div class="mt-2"><span class="t-prompt">❯</span> <span class="t-cursor"></span></div>
+      <div class="terminal-body">
+        <span class="t-line"><span class="t-prompt">❯</span> <span class="t-cmd">whoami</span></span>
+        <span class="t-line"><span class="t-out">Florent Perez — Développeur Full Stack (reconversion 2022)</span></span>
+        <span class="t-line"> </span>
+        <span class="t-line"><span class="t-prompt">❯</span> <span class="t-cmd">cat</span> <span class="t-string">./stack.json</span></span>
+        <span class="t-line"><span class="t-out">&#123;</span></span>
+        <span class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"frontend"</span>: [<span class="t-string">"React"</span>, <span class="t-string">"Next.js 15"</span>, <span class="t-string">"Astro"</span>, <span class="t-string">"TypeScript"</span>],</span></span>
+        <span class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"backend"</span>:  [<span class="t-string">"Node.js"</span>, <span class="t-string">"Supabase"</span>, <span class="t-string">"PostgreSQL"</span>],</span></span>
+        <span class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"style"</span>:    <span class="t-string">"TailwindCSS"</span>,</span></span>
+        <span class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"projects"</span>: <span class="t-num">28</span>,</span></span>
+        <span class="t-line"><span class="t-out">&#125;</span></span>
+        <span class="t-line"> </span>
+        <span class="t-line"><span class="t-prompt">❯</span> <span class="t-cmd">git log</span> <span class="t-type">--oneline</span> <span class="t-type">-3</span></span>
+        <span class="t-line"><span class="t-out"><span class="t-string">a3f7b2c</span> feat: build innovative &amp; performant web apps</span></span>
+        <span class="t-line"><span class="t-out"><span class="t-string">9c1d4e8</span> refactor: optimize for real-world business needs</span></span>
+        <span class="t-line"><span class="t-out"><span class="t-string">2f8a1b7</span> init: passion-driven full stack development</span></span>
+        <span class="t-line"> </span>
+        <span class="t-line"><span class="t-prompt">❯</span> <span class="t-cursor"></span></span>
       </div>
     </div>
   </div>
@@ -157,8 +190,9 @@ import { aboutMe } from '../../data/aboutMe';
   <div class="flex flex-wrap gap-2 mt-6 px-1">
     {aboutMe.skills.map((skill) => (
       <span
-        class="text-xs font-medium px-3 py-1 rounded-full mono transition-all duration-200 hover:border-[rgba(240,165,0,0.4)] cursor-default"
-        style="background: rgba(255,255,255,0.03); color: #64748B; border: 1px solid rgba(255,255,255,0.07);"
+        class="text-xs font-medium px-3 py-1 rounded-full mono transition-all duration-200
+               hover:border-[rgba(240,165,0,0.4)] hover:text-[#F0A500] cursor-default"
+        style="background:rgba(255,255,255,0.03); color:var(--text-muted); border:1px solid rgba(255,255,255,0.07);"
       >
         {skill}
       </span>

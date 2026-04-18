@@ -8,32 +8,28 @@ import { skills } from '../../data/skills';
   <div
     class="w-full overflow-hidden"
     style="
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     "
   >
-    <ul class="flex flex-nowrap w-max list-none m-0 p-0 gap-4 animate-carousel motion-reduce:animate-none">
+    <ul class="flex flex-nowrap w-max list-none m-0 p-0 gap-3 animate-carousel motion-reduce:animate-none">
       {skills.map((skill) => (
-        <li class="flex flex-col items-center gap-2 cursor-pointer group transition-all duration-200 hover:scale-110">
-          <div
-            class="rounded-xl p-3 transition-all duration-200"
-            style="background: rgba(240,165,0,0.04); border: 1px solid rgba(240,165,0,0.08); color: #64748B;"
-          >
-            <div class="group-hover:[&>svg]:drop-shadow-none transition-all duration-200" style="color: #64748B;">
-              <skill.icon width={40} height={40} />
+        <li>
+          <div class="skill-card">
+            <div style="color:#7A8FAA; transition:color .2s;" class="group-hover:text-[#F0A500]">
+              <skill.icon width={38} height={38} />
             </div>
+            <span class="skill-name">{skill.name}</span>
           </div>
         </li>
       ))}
       {skills.map((skill) => (
-        <li class="flex flex-col items-center gap-2 cursor-pointer group transition-all duration-200 hover:scale-110" aria-hidden="true">
-          <div
-            class="rounded-xl p-3 transition-all duration-200"
-            style="background: rgba(240,165,0,0.04); border: 1px solid rgba(240,165,0,0.08); color: #64748B;"
-          >
-            <div style="color: #64748B;">
-              <skill.icon width={40} height={40} />
+        <li aria-hidden="true">
+          <div class="skill-card">
+            <div style="color:#7A8FAA;">
+              <skill.icon width={38} height={38} />
             </div>
+            <span class="skill-name">{skill.name}</span>
           </div>
         </li>
       ))}

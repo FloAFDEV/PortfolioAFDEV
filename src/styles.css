@@ -122,7 +122,10 @@
 
 /* ─── Base ───────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* prevent iOS horizontal scroll from transforms */
+}
 
 body {
   font-family: 'DM Sans', sans-serif;
@@ -303,6 +306,8 @@ code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
 .terminal-body {
   padding: 16px 20px;
   line-height: 1.9;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Terminal line-by-line reveal */
@@ -481,16 +486,19 @@ code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
 }
 .stagger-item.visible { opacity: 1; transform: none; }
 
-/* ─── Mouse parallax layers ──────────────────────────────── */
-.parallax-slow {
-  transform: translate(calc(var(--mx, 0) * 22px), calc(var(--my, 0) * 14px));
-  transition: transform 2s cubic-bezier(0.16,1,0.3,1);
-  will-change: transform;
-}
-.parallax-mid {
-  transform: translate(calc(var(--mx, 0) * 12px), calc(var(--my, 0) * 8px));
-  transition: transform 1.3s cubic-bezier(0.16,1,0.3,1);
-  will-change: transform;
+/* ─── Mouse parallax (pointer devices only, never on touch) ─ */
+.parallax-slow { transition: transform 2s cubic-bezier(0.16,1,0.3,1); }
+.parallax-mid  { transition: transform 1.3s cubic-bezier(0.16,1,0.3,1); }
+
+@media (hover: hover) and (pointer: fine) {
+  .parallax-slow {
+    transform: translate(calc(var(--mx, 0) * 22px), calc(var(--my, 0) * 14px));
+    will-change: transform;
+  }
+  .parallax-mid {
+    transform: translate(calc(var(--mx, 0) * 12px), calc(var(--my, 0) * 8px));
+    will-change: transform;
+  }
 }
 
 /* ─── Animated link underline ────────────────────────────── */
@@ -569,6 +577,21 @@ code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
 }
 .btn-primary { animation: cta-glow 3s ease-in-out 1.5s infinite; }
 .btn-primary:hover { animation: none; }
+
+/* ─── Anchor scroll offset (clears sticky navbar) ───────── */
+section[id] { scroll-margin-top: 88px; }
+
+/* ─── Mobile: hide heavy decorations, fix overflow ──────── */
+@media (max-width: 639px) {
+  .code-float   { display: none; }
+  .code-rain-col { display: none; }
+  .typewriter {
+    white-space: normal;
+    overflow: visible;
+    border-right: none;
+    animation: none;
+  }
+}
 
 /* ─── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {

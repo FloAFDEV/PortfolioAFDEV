@@ -100,9 +100,9 @@ const { title, description, image } = Astro.props;
       setTimeout(() => line.classList.add('show'), 300 + i * 280);
     });
 
-    // ── Mouse parallax (hero only) ───────────────────────────
+    // ── Mouse parallax (pointer devices only — disabled on mobile) ─
     const heroEl = document.getElementById('hero') as HTMLElement | null;
-    if (heroEl) {
+    if (heroEl && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
       heroEl.addEventListener('mousemove', (e: MouseEvent) => {
         const r = heroEl.getBoundingClientRect();
         const x = ((e.clientX - r.left) / r.width  - 0.5) * 2;

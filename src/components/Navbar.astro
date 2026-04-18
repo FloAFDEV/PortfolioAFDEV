@@ -12,12 +12,13 @@ const { pathname } = Astro.url;
 
 <nav class="w-full sticky top-0 z-50 px-4 py-3">
   <div
-    class="max-w-[1200px] mx-auto px-5 py-2 flex items-center justify-between gap-x-4 gap-y-2 flex-wrap min-w-0 w-full rounded-2xl"
-    style="background: rgba(7,11,18,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(240,165,0,0.12); box-shadow: 0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(240,165,0,0.04);"
+    class="max-w-[1200px] mx-auto px-4 sm:px-5 py-2 flex items-center justify-between gap-x-4 min-w-0 w-full rounded-2xl"
+    style="background: rgba(7,11,18,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(240,165,0,0.12); box-shadow: 0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(240,165,0,0.04);"
   >
+    <!-- Logo -->
     <a
       href="/"
-      class="flex items-center hover:opacity-90 transition-opacity duration-200 cursor-pointer"
+      class="flex items-center hover:opacity-90 transition-opacity duration-200 cursor-pointer flex-shrink-0"
       aria-label="FloAFDEV – Retour à l'accueil"
     >
       <img
@@ -25,12 +26,13 @@ const { pathname } = Astro.url;
         alt="Logo AFDEV"
         width="160"
         height="80"
-        class="h-12 w-auto object-contain sm:h-14 md:h-16 logo-dark-bg"
+        class="h-10 sm:h-12 md:h-14 w-auto object-contain logo-dark-bg"
         loading="eager"
       />
     </a>
 
-    <ul class="flex flex-wrap gap-x-1 gap-y-1 list-none m-0 p-0" role="list">
+    <!-- Desktop nav links (sm+) -->
+    <ul class="hidden sm:flex flex-wrap gap-x-1 gap-y-1 list-none m-0 p-0" role="list">
       {navLinks.map(({ label, href }) => {
         const isActive =
           href === '/'
@@ -43,9 +45,56 @@ const { pathname } = Astro.url;
               class:list={[
                 'text-sm no-underline px-3 py-1.5 rounded-lg transition-all duration-200 cursor-pointer font-medium',
                 'hover:text-[#F0A500] hover:bg-[rgba(240,165,0,0.07)] focus-visible:outline-2 focus-visible:outline-[#F0A500] focus-visible:outline-offset-2',
-                isActive
-                  ? 'text-[#F0A500] bg-[rgba(240,165,0,0.1)]'
-                  : 'text-[#94A3B8]',
+                isActive ? 'text-[#F0A500] bg-[rgba(240,165,0,0.1)]' : 'text-[#94A3B8]',
+              ]}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+
+    <!-- Mobile hamburger button -->
+    <button
+      id="nav-toggle"
+      class="sm:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-lg transition-colors duration-200 cursor-pointer flex-shrink-0"
+      style="background:rgba(240,165,0,0.06); border:1px solid rgba(240,165,0,0.15);"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false"
+      aria-controls="nav-mobile"
+    >
+      <span id="ham-1" class="block w-5 rounded-full transition-all duration-300" style="height:1.5px; background:#94A3B8;"></span>
+      <span id="ham-2" class="block w-5 rounded-full transition-all duration-300" style="height:1.5px; background:#94A3B8;"></span>
+      <span id="ham-3" class="block w-5 rounded-full transition-all duration-300" style="height:1.5px; background:#94A3B8;"></span>
+    </button>
+  </div>
+
+  <!-- Mobile dropdown (sm-) -->
+  <div
+    id="nav-mobile"
+    class="sm:hidden hidden mt-2"
+    aria-hidden="true"
+  >
+    <ul
+      class="list-none m-0 p-0 flex flex-col gap-1 rounded-2xl px-3 py-3"
+      style="background:rgba(7,11,18,0.97); border:1px solid rgba(240,165,0,0.14); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:0 8px 32px rgba(0,0,0,0.5);"
+      role="list"
+    >
+      {navLinks.map(({ label, href }) => {
+        const isActive =
+          href === '/'
+            ? pathname === '/'
+            : !href.startsWith('mailto') && pathname.startsWith(href.split('#')[0]) && href !== '/';
+        return (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                'block text-sm no-underline px-4 py-3 rounded-xl transition-all duration-200 font-medium',
+                'hover:text-[#F0A500] hover:bg-[rgba(240,165,0,0.08)]',
+                isActive ? 'text-[#F0A500] bg-[rgba(240,165,0,0.1)]' : 'text-[#94A3B8]',
               ]}
               aria-current={isActive ? 'page' : undefined}
             >
@@ -57,3 +106,45 @@ const { pathname } = Astro.url;
     </ul>
   </div>
 </nav>
+
+<script>
+  const toggle = document.getElementById('nav-toggle') as HTMLButtonElement | null;
+  const menu   = document.getElementById('nav-mobile') as HTMLElement | null;
+  const h1 = document.getElementById('ham-1') as HTMLElement | null;
+  const h2 = document.getElementById('ham-2') as HTMLElement | null;
+  const h3 = document.getElementById('ham-3') as HTMLElement | null;
+
+  function openMenu() {
+    menu?.classList.remove('hidden');
+    menu?.setAttribute('aria-hidden', 'false');
+    toggle?.setAttribute('aria-expanded', 'true');
+    toggle?.setAttribute('aria-label', 'Fermer le menu');
+    if (h1) { h1.style.transform = 'translateY(6.5px) rotate(45deg)'; h1.style.background = '#F0A500'; }
+    if (h2) { h2.style.opacity = '0'; h2.style.transform = 'scaleX(0)'; }
+    if (h3) { h3.style.transform = 'translateY(-6.5px) rotate(-45deg)'; h3.style.background = '#F0A500'; }
+  }
+
+  function closeMenu() {
+    menu?.classList.add('hidden');
+    menu?.setAttribute('aria-hidden', 'true');
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Ouvrir le menu');
+    if (h1) { h1.style.transform = ''; h1.style.background = '#94A3B8'; }
+    if (h2) { h2.style.opacity = '1'; h2.style.transform = ''; }
+    if (h3) { h3.style.transform = ''; h3.style.background = '#94A3B8'; }
+  }
+
+  toggle?.addEventListener('click', () => {
+    toggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+
+  menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  document.addEventListener('click', (e) => {
+    if (
+      toggle?.getAttribute('aria-expanded') === 'true' &&
+      !toggle.contains(e.target as Node) &&
+      !menu?.contains(e.target as Node)
+    ) closeMenu();
+  });
+</script>

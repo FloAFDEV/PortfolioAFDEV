@@ -2,30 +2,38 @@
 import { skills } from '../../data/skills';
 ---
 
-<section id="skills" class="w-full px-4 py-5 sm:p-6 flex flex-col border border-primary rounded-[10px]">
-  <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">
-    Compétences
-  </h2>
+<section id="skills" class="w-full glass-card px-6 py-8">
+  <h2 class="section-title mb-8">Compétences</h2>
 
   <div
     class="w-full overflow-hidden"
     style="
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
     "
   >
-    <ul class="flex flex-nowrap w-max list-none m-0 p-0 animate-carousel motion-reduce:animate-none">
+    <ul class="flex flex-nowrap w-max list-none m-0 p-0 animate-carousel motion-reduce:animate-none gap-4">
       {skills.map((skill) => (
-        <li class="pr-10 flex items-center justify-center text-[var(--text-color)] transition duration-200 hover:text-primary hover:scale-110">
-          <div class="bg-[var(--secondary-background-color)] rounded-xl p-3 shadow-sm">
-            <skill.icon width={44} height={44} />
+        <li class="flex items-center justify-center transition-all duration-200 cursor-pointer hover:scale-110 group">
+          <div
+            class="rounded-xl p-3 transition-all duration-200 group-hover:border-[rgba(34,197,94,0.4)]"
+            style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #94A3B8;"
+          >
+            <div class="group-hover:text-[#22C55E] transition-colors duration-200" style="color: #94A3B8;">
+              <skill.icon width={40} height={40} />
+            </div>
           </div>
         </li>
       ))}
       {skills.map((skill) => (
-        <li class="pr-10 flex items-center justify-center text-[var(--text-color)] transition duration-200 hover:text-primary hover:scale-110" aria-hidden="true">
-          <div class="bg-[var(--secondary-background-color)] rounded-xl p-3 shadow-sm">
-            <skill.icon width={44} height={44} />
+        <li class="flex items-center justify-center transition-all duration-200 cursor-pointer hover:scale-110 group" aria-hidden="true">
+          <div
+            class="rounded-xl p-3 transition-all duration-200 group-hover:border-[rgba(34,197,94,0.4)]"
+            style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #94A3B8;"
+          >
+            <div class="group-hover:text-[#22C55E] transition-colors duration-200" style="color: #94A3B8;">
+              <skill.icon width={40} height={40} />
+            </div>
           </div>
         </li>
       ))}

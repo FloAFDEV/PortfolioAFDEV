@@ -3,15 +3,21 @@ import { experience } from '../../data/experience';
 import ExperienceCard, { type ExperienceItem } from '../Experience/ExperienceCard.astro';
 ---
 
-<section id="experience" class="w-full px-4 py-5 sm:p-6 flex flex-col gap-8 border border-primary rounded-[10px]">
-  <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">
-    Expérience
-  </h2>
+<section id="experience" class="w-full glass-card px-6 py-8">
+  <h2 class="section-title mb-8">Expérience</h2>
 
-  <ul class="list-none m-0 p-0 relative before:content-[''] before:absolute before:left-[14px] before:top-0 before:bottom-0 before:w-0.5 before:bg-primary">
+  <ul
+    class="list-none m-0 p-0 flex flex-col gap-0 relative"
+    style="border-left: 2px solid rgba(34,197,94,0.2); padding-left: 1.75rem; margin-left: 0.25rem;"
+  >
     {
       experience.map((exp: ExperienceItem) => (
-        <li class="relative mb-5 pl-10 before:content-[''] before:absolute before:left-[10px] before:top-[5px] before:w-[10px] before:h-[10px] before:bg-primary before:rounded-full">
+        <li class="relative pb-8 last:pb-0">
+          <div
+            class="absolute -left-[calc(1.75rem+5px)] top-1.5 w-2.5 h-2.5 rounded-full"
+            style="background: #22C55E; box-shadow: 0 0 0 4px rgba(34,197,94,0.12), 0 0 12px rgba(34,197,94,0.3);"
+            aria-hidden="true"
+          ></div>
           <ExperienceCard {...exp} />
         </li>
       ))

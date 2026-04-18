@@ -3,29 +3,27 @@ import { socialMediaIcons } from '../../assets/social/util';
 import { aboutMe } from '../../data/aboutMe';
 ---
 
-<section
-  id="about"
-  class="w-full px-4 py-5 sm:p-6 flex flex-col border border-primary rounded-[10px]"
->
-  <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">À propos de moi</h2>
+<section id="about" class="w-full glass-card px-6 py-8">
+  <h2 class="section-title mb-8">À propos de moi</h2>
 
-  <article
-    class="flex gap-6 p-4 sm:p-6 w-full max-w-[800px] mx-auto rounded-[15px]
-           flex-col items-center md:flex-row md:flex-nowrap md:items-start min-w-0"
-  >
+  <article class="flex gap-8 w-full max-w-[900px] mx-auto flex-col md:flex-row md:items-start min-w-0">
     <!-- Profile + socials -->
-    <div class="flex flex-col items-center gap-4 w-full p-[10px]">
-      <picture class="overflow-hidden max-w-[250px] border-2 border-primary rounded-[30px]">
+    <div class="flex flex-col items-center gap-5 flex-shrink-0">
+      <div
+        class="overflow-hidden w-[160px] h-[160px]"
+        style="border-radius: 20px; border: 2px solid rgba(34,197,94,0.3); box-shadow: 0 0 24px rgba(34,197,94,0.1);"
+      >
         <img
           src={aboutMe.profile.picture}
           alt={aboutMe.profile.altText}
           loading="lazy"
-          width="200"
-          height="200"
+          width="160"
+          height="160"
+          class="w-full h-full object-cover"
         />
-      </picture>
+      </div>
 
-      <div class="flex gap-4">
+      <div class="flex gap-3">
         {
           Object.entries(aboutMe.socialMedia).map(([key, value]) => {
             const IconComponent = socialMediaIcons[key as keyof typeof socialMediaIcons];
@@ -34,11 +32,12 @@ import { aboutMe } from '../../data/aboutMe';
                 href={value}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-white transition-colors duration-200 hover:text-primary relative group"
+                aria-label={key}
+                class="cursor-pointer transition-all duration-200 rounded-xl p-2.5 hover:scale-110"
+                style="background: rgba(255,255,255,0.05); color: #94A3B8; border: 1px solid rgba(255,255,255,0.08);"
               >
-                <IconComponent width={40} height={40} />
-                <span class="sr-only absolute -right-5 bottom-[-16px] opacity-0 group-hover:opacity-100 group-hover:bg-secondary group-hover:underline group-hover:px-[5px] transition-opacity duration-200">
-                  {key}
+                <span style="display:block; color: inherit; transition: color 0.2s;">
+                  <IconComponent width={28} height={28} />
                 </span>
               </a>
             );
@@ -48,13 +47,31 @@ import { aboutMe } from '../../data/aboutMe';
     </div>
 
     <!-- Bio -->
-    <div class="flex flex-col gap-4 min-w-0 w-full">
-      <h3 class="text-[var(--text-color)]">{aboutMe.name}</h3>
+    <div class="flex flex-col gap-4 min-w-0 flex-1">
+      <h3 class="text-xl font-bold" style="color: #F1F5F9;">
+        {aboutMe.name}
+      </h3>
       {
         aboutMe.bio.paragraphs.map((paragraph) => (
-          <p class="text-[var(--text-color)]">{paragraph}</p>
+          <p class="text-sm leading-relaxed" style="color: #94A3B8;">
+            {paragraph}
+          </p>
         ))
       }
+
+      <!-- Hobbies/interests -->
+      {aboutMe.hobbies && aboutMe.hobbies.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-2">
+          {aboutMe.hobbies.map((hobby) => (
+            <span
+              class="text-xs font-medium px-3 py-1 rounded-full"
+              style="background: rgba(34,197,94,0.08); color: #86EFAC; border: 1px solid rgba(34,197,94,0.2);"
+            >
+              {hobby}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   </article>
 </section>

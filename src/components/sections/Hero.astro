@@ -2,53 +2,95 @@
 import { aboutMe } from '../../data/aboutMe';
 ---
 
-<section
-  id="hero"
-  class="flex flex-col items-center text-center md:grid md:items-start md:text-left md:gap-x-8 w-full min-w-0"
-  style="grid-template-areas: 'headerHero headerHero' 'pictureHero contentHero'; grid-template-columns: auto 1fr;"
->
-  <!-- Banner -->
-  <header class="w-full overflow-hidden rounded-[7px]" style="grid-area: headerHero;">
-    <picture class="aspect-700/150 overflow-hidden block w-full">
-      <img
-        src={aboutMe.banner.image}
-        alt={aboutMe.banner.altText}
-        loading="lazy"
-        width="750"
-        height="150"
-        class="w-full h-full object-cover"
-      />
-    </picture>
-  </header>
-
-  <!-- Avatar -->
-  <picture
-    class="w-full max-w-[200px] overflow-hidden rounded-full aspect-square -mt-[30px]"
-    style="grid-area: pictureHero;"
-  >
-    <img
-      src={aboutMe.profile.picture}
-      alt={aboutMe.profile.altText}
-      width="200"
-      height="200"
-      class="h-full object-cover rounded-full border-2 border-[#5a5353]"
-    />
-  </picture>
-
-  <!-- Content -->
+<section id="hero" class="relative w-full min-w-0 pt-4 pb-8">
+  <!-- Background glow -->
   <div
-    class="flex flex-col gap-3 items-stretch md:items-start w-full min-w-0"
-    style="grid-area: contentHero;"
-  >
-    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold w-full mt-4">{aboutMe.name}</h1>
-    <p class="w-full max-w-[600px] text-[1.05em] sm:text-[1.2em] text-[var(--text-color)]">
-      {aboutMe.description}
-    </p>
-    <a
-      href={`mailto:${aboutMe.contact.email}`}
-      class="inline-block py-[10px] px-5 bg-primary text-white no-underline rounded border-2 border-transparent transition-colors duration-300 hover:bg-transparent hover:text-primary hover:border-primary hover:underline w-fit text-sm sm:text-base self-center md:self-start"
-    >
-      Me contacter
-    </a>
+    class="absolute inset-0 -z-10 pointer-events-none"
+    aria-hidden="true"
+    style="background: radial-gradient(ellipse 60% 50% at 50% -10%, rgba(34,197,94,0.12) 0%, transparent 70%);"
+  ></div>
+
+  <!-- Banner -->
+  <div class="w-full overflow-hidden rounded-2xl" style="height: 180px; position: relative;">
+    <img
+      src={aboutMe.banner.image}
+      alt={aboutMe.banner.altText}
+      loading="lazy"
+      width="1200"
+      height="180"
+      class="w-full h-full object-cover"
+      style="filter: brightness(0.45) saturate(0.7);"
+    />
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(to bottom, transparent 30%, #0F172A 100%);"
+    ></div>
+  </div>
+
+  <!-- Avatar + Content -->
+  <div class="flex flex-col md:flex-row md:items-end gap-6 -mt-12 px-2">
+    <!-- Avatar -->
+    <div class="flex-shrink-0 self-center md:self-end pl-2">
+      <div
+        class="relative w-[110px] h-[110px] sm:w-[130px] sm:h-[130px]"
+        style="border-radius: 50%; padding: 3px; background: linear-gradient(135deg, #22C55E 0%, #60A5FA 100%);"
+      >
+        <img
+          src={aboutMe.profile.picture}
+          alt={aboutMe.profile.altText}
+          width="130"
+          height="130"
+          class="w-full h-full object-cover rounded-full"
+          style="background: #0F172A;"
+        />
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="flex flex-col gap-3 flex-1 min-w-0 md:pb-1">
+      <div class="flex flex-wrap items-center gap-3">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">
+          {aboutMe.name}
+        </h1>
+        <span
+          class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
+          style="background: rgba(34,197,94,0.12); color: #22C55E; border: 1px solid rgba(34,197,94,0.3);"
+        >
+          <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: #22C55E;"></span>
+          Disponible
+        </span>
+      </div>
+
+      <p class="text-[#94A3B8] text-base sm:text-lg font-semibold">
+        {aboutMe.profession}
+      </p>
+
+      <p class="text-[#CBD5E1] text-sm sm:text-base leading-relaxed max-w-[580px]">
+        {aboutMe.description}
+      </p>
+
+      <div class="flex flex-wrap gap-3 mt-1">
+        <a href={`mailto:${aboutMe.contact.email}`} class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Me contacter
+        </a>
+        <a href="/projects" class="btn-outline">
+          Voir mes projets
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech stack pills -->
+  <div class="flex flex-wrap gap-2 mt-8 px-2">
+    {aboutMe.skills.map((skill) => (
+      <span
+        class="text-xs font-medium px-3 py-1 rounded-full"
+        style="background: rgba(255,255,255,0.05); color: #94A3B8; border: 1px solid rgba(255,255,255,0.08);"
+      >
+        {skill}
+      </span>
+    ))}
   </div>
 </section>

@@ -463,6 +463,15 @@ code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
 }
 .skill-card:hover .skill-name { color: #F0A500; }
 
+/* ─── Avatar: rotating border + floating badges ─────────── */
+@keyframes rotate-border {
+  to { transform: rotate(360deg); }
+}
+@keyframes float-badge-a {
+  0%, 100% { transform: translateY(0);   opacity: 0.88; }
+  50%       { transform: translateY(-6px); opacity: 1;    }
+}
+
 /* ─── Stagger reveal system ──────────────────────────────── */
 .stagger-item {
   opacity: 0;
@@ -576,6 +585,8 @@ code, pre, .mono { font-family: 'JetBrains Mono', monospace; }
   .parallax-slow,
   .parallax-mid      { transform:none !important; transition:none; }
   .project-scan-line { display:none; }
+  [style*="rotate-border"],
+  [style*="float-badge-a"] { animation:none !important; }
   .hero-reveal-1, .hero-reveal-2, .hero-reveal-3,
   .hero-reveal-4, .hero-reveal-5 { animation:none; opacity:1; }
   .btn-primary       { animation:none; }

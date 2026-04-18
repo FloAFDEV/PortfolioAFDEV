@@ -16,54 +16,61 @@ const canonicalUrl = new URL(`/projects/${project.slug}`, Astro.site ?? Astro.ur
   image={project.thumbnail}
 >
   <!-- Breadcrumb -->
-  <nav aria-label="Fil d'ariane" class="flex items-center gap-2 text-sm text-[var(--text-color)] opacity-70">
-    <a href="/" class="hover:text-primary transition-colors no-underline">Accueil</a>
-    <span aria-hidden="true">/</span>
-    <a href="/projects" class="hover:text-primary transition-colors no-underline">Projets</a>
-    <span aria-hidden="true">/</span>
-    <span class="text-primary font-medium">{project.title}</span>
+  <nav aria-label="Fil d'ariane" class="flex items-center gap-2 text-xs mono" style="color: #475569;">
+    <a href="/" class="hover:text-[#F0A500] transition-colors no-underline">Accueil</a>
+    <span aria-hidden="true" style="color: #334155;">/</span>
+    <a href="/projects" class="hover:text-[#F0A500] transition-colors no-underline">Projets</a>
+    <span aria-hidden="true" style="color: #334155;">/</span>
+    <span style="color: #F0A500;">{project.title}</span>
   </nav>
 
-  <article class="flex flex-col gap-10">
+  <article class="flex flex-col gap-8">
     <!-- Hero -->
-    <header class="flex flex-col gap-4">
+    <header class="flex flex-col gap-4 reveal">
       <div class="flex items-center gap-3 flex-wrap">
-        <h1 class="text-2xl sm:text-3xl font-bold text-[var(--text-color)]">{project.title}</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold gradient-text">{project.title}</h1>
         {project.status === 'wip' && (
-          <span class="bg-amber-500 text-white text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+          <span
+            class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full mono"
+            style="background: rgba(240,165,0,0.1); color: #F0A500; border: 1px solid rgba(240,165,0,0.3);"
+          >
             En cours
           </span>
         )}
       </div>
-      <p class="text-base sm:text-[1.15em] text-[var(--text-color)] opacity-80 max-w-[700px]">
+      <p class="text-sm sm:text-base max-w-[700px]" style="color: #64748B;">
         {project.shortDescription}
       </p>
 
       <!-- Tech tags -->
-      <ul class="flex flex-wrap gap-2 list-none m-0 p-0" aria-label="Technologies utilisées">
+      <ul class="flex flex-wrap gap-2 list-none m-0 p-0 mono" aria-label="Technologies utilisées">
         {project.technologies.map((tech) => (
-          <li class="bg-primary/20 text-primary border border-primary/40 text-xs font-medium px-3 py-1 rounded-full">
+          <li
+            class="text-xs font-medium px-3 py-1 rounded-full"
+            style="background: rgba(240,165,0,0.07); color: #94A3B8; border: 1px solid rgba(240,165,0,0.18);"
+          >
             {tech}
           </li>
         ))}
       </ul>
 
       <!-- CTA bar -->
-      <div class="flex flex-wrap gap-3 items-center mt-2">
+      <div class="flex flex-wrap gap-3 items-center mt-1">
         {project.liveUrl && (
           <a
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 bg-primary text-[var(--primary-dark)] font-semibold py-2 px-5 rounded no-underline transition-opacity hover:opacity-80"
+            class="btn-primary"
           >
             Voir le site en ligne
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
         )}
         <a
           href="/projects"
-          class="inline-flex items-center gap-2 text-sm text-[var(--text-color)] opacity-70 hover:opacity-100 hover:text-primary transition-all no-underline"
+          class="inline-flex items-center gap-2 text-sm no-underline transition-all duration-200 hover:text-[#F0A500] cursor-pointer"
+          style="color: #475569;"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
           Retour aux projets
@@ -72,50 +79,54 @@ const canonicalUrl = new URL(`/projects/${project.slug}`, Astro.site ?? Astro.ur
     </header>
 
     <!-- Thumbnail -->
-    <div class="w-full rounded-xl overflow-hidden border border-primary/20">
+    <div
+      class="w-full overflow-hidden reveal"
+      style="border-radius: 16px; border: 1px solid rgba(240,165,0,0.12); box-shadow: 0 0 40px rgba(240,165,0,0.04);"
+    >
       <img
         src={project.thumbnail}
         alt={`Aperçu du projet ${project.title}`}
         width="800"
         height="450"
         loading="eager"
-        class="w-full h-auto object-cover"
+        class="w-full h-auto object-cover transition-transform duration-500 hover:scale-[1.01]"
       />
     </div>
 
     <!-- Description -->
-    <section class="w-full px-4 py-5 sm:p-6 flex flex-col gap-4 border border-primary rounded-[10px]">
-      <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">
-        Description
-      </h2>
+    <section class="glass-card px-6 py-7 reveal">
+      <h2 class="section-title mb-5">Description</h2>
       <div class="flex flex-col gap-3">
         {project.detailedDescription.map((para) => (
-          <p class="text-[var(--text-color)] leading-relaxed">{para}</p>
+          <p class="text-sm leading-relaxed" style="color: #64748B;">{para}</p>
         ))}
       </div>
-      <div class="mt-2 pt-4 border-t border-primary/20">
-        <p class="text-sm text-[var(--text-color)] opacity-70">
-          <span class="font-semibold opacity-100">Rôle :</span> {project.role}
-        </p>
+      <div
+        class="mt-4 pt-4 text-xs mono flex items-center gap-2"
+        style="border-top: 1px solid rgba(240,165,0,0.1); color: #475569;"
+      >
+        <span style="color: #F0A500;">$</span>
+        <span><span style="color: #93C5FD;">role</span>: <span style="color: #86EFAC;">"{project.role}"</span></span>
       </div>
     </section>
 
     <!-- Screenshots -->
     {project.screenshots.length > 0 && (
-      <section class="w-full px-4 py-5 sm:p-6 flex flex-col gap-4 border border-primary rounded-[10px]">
-        <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">
-          Captures d'écran
-        </h2>
-        <div class="grid gap-6 grid-cols-1 md:grid-cols-2">
+      <section class="glass-card px-6 py-7 reveal">
+        <h2 class="section-title mb-5">Captures d'écran</h2>
+        <div class="grid gap-5 grid-cols-1 md:grid-cols-2">
           {project.screenshots.map((src, i) => (
-            <div class="rounded-lg overflow-hidden border border-primary/20">
+            <div
+              class="overflow-hidden"
+              style="border-radius: 12px; border: 1px solid rgba(240,165,0,0.1);"
+            >
               <img
                 src={src}
                 alt={`Capture d'écran ${i + 1} – ${project.title}`}
                 width="800"
                 height="450"
                 loading="lazy"
-                class="w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]"
+                class="w-full h-auto object-cover transition-transform duration-400 hover:scale-[1.02]"
               />
             </div>
           ))}
@@ -125,17 +136,18 @@ const canonicalUrl = new URL(`/projects/${project.slug}`, Astro.site ?? Astro.ur
 
     <!-- Challenges -->
     {project.challenges && project.challenges.length > 0 && (
-      <section class="w-full px-4 py-5 sm:p-6 flex flex-col gap-4 border border-primary rounded-[10px]">
-        <h2 class="-translate-y-12 bg-[var(--background-color)] px-4 py-2 w-fit">
-          Défis &amp; Solutions
-        </h2>
-        <ul class="flex flex-col gap-6 list-none m-0 p-0">
+      <section class="glass-card px-6 py-7 reveal">
+        <h2 class="section-title mb-5">Défis &amp; Solutions</h2>
+        <ul class="flex flex-col gap-5 list-none m-0 p-0">
           {project.challenges.map(({ problem, solution }) => (
-            <li class="flex flex-col gap-2 p-4 rounded-[10px] bg-[var(--secondary-background-color)]">
-              <p class="font-semibold text-primary text-sm uppercase tracking-wide">Défi</p>
-              <p class="text-[var(--text-color)]">{problem}</p>
-              <p class="font-semibold text-secondary text-sm uppercase tracking-wide mt-2">Solution</p>
-              <p class="text-[var(--text-color)]">{solution}</p>
+            <li
+              class="flex flex-col gap-2 p-4 rounded-xl"
+              style="background: rgba(240,165,0,0.03); border: 1px solid rgba(240,165,0,0.08);"
+            >
+              <p class="text-[11px] font-bold uppercase tracking-widest mono" style="color: #F0A500;">// Défi</p>
+              <p class="text-sm leading-relaxed" style="color: #94A3B8;">{problem}</p>
+              <p class="text-[11px] font-bold uppercase tracking-widest mono mt-1" style="color: #86EFAC;">// Solution</p>
+              <p class="text-sm leading-relaxed" style="color: #94A3B8;">{solution}</p>
             </li>
           ))}
         </ul>
@@ -143,6 +155,5 @@ const canonicalUrl = new URL(`/projects/${project.slug}`, Astro.site ?? Astro.ur
     )}
   </article>
 
-  <!-- SEO canonical + structured data -->
   <link rel="canonical" href={canonicalUrl} slot="head" />
 </Layout>

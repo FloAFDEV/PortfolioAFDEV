@@ -21,7 +21,7 @@ export const aboutMe = {
     altText: 'Bannière technologique',
   },
   contact: {
-    email: 'afdevflo@gmail.com',
+    email: 'contact@afdev.fr',
     phone: '',
   },
   socialMedia: {

@@ -3,19 +3,27 @@ import { experience } from '../../data/experience';
 import ExperienceCard, { type ExperienceItem } from '../Experience/ExperienceCard.astro';
 ---
 
-<section id="experience" class="w-full glass-card px-6 py-8">
+<section id="experience" class="w-full glass-card px-6 py-8 reveal">
   <h2 class="section-title mb-8">Expérience</h2>
 
   <ul
     class="list-none m-0 p-0 flex flex-col gap-0 relative"
-    style="border-left: 2px solid rgba(34,197,94,0.2); padding-left: 1.75rem; margin-left: 0.25rem;"
+    style="padding-left: 1.75rem; margin-left: 0.25rem;"
   >
+    <!-- Animated timeline line -->
+    <div
+      class="absolute left-0 top-0 w-[2px] rounded-full"
+      style="background: linear-gradient(to bottom, #F0A500, rgba(240,165,0,0.15)); animation: draw-line 1.5s ease-out 0.3s both; height: 100%;"
+      aria-hidden="true"
+    ></div>
+
     {
-      experience.map((exp: ExperienceItem) => (
-        <li class="relative pb-8 last:pb-0">
+      experience.map((exp: ExperienceItem, i: number) => (
+        <li class={`relative pb-8 last:pb-0 reveal reveal-delay-${Math.min(i+1,4)}`}>
+          <!-- Gold dot with pulse -->
           <div
-            class="absolute -left-[calc(1.75rem+5px)] top-1.5 w-2.5 h-2.5 rounded-full"
-            style="background: #22C55E; box-shadow: 0 0 0 4px rgba(34,197,94,0.12), 0 0 12px rgba(34,197,94,0.3);"
+            class="absolute top-1"
+            style={`left: calc(-1.75rem - 5px); width: 12px; height: 12px; border-radius: 50%; background: #F0A500; box-shadow: 0 0 0 3px rgba(240,165,0,0.15), 0 0 12px rgba(240,165,0,0.3); animation: pulse-gold ${2.5 + i * 0.5}s ease-in-out infinite;`}
             aria-hidden="true"
           ></div>
           <ExperienceCard {...exp} />

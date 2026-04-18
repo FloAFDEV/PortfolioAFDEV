@@ -5,13 +5,13 @@ import { projects } from '../../data/projects';
 const featured = projects.slice(0, 4);
 ---
 
-<section id="projects" class="w-full glass-card px-6 py-8">
+<section id="projects" class="w-full glass-card px-6 py-8 reveal">
   <div class="flex items-center justify-between gap-4 mb-8 flex-wrap">
     <h2 class="section-title">Projets</h2>
     <a
       href="/projects"
-      class="inline-flex items-center gap-1.5 text-sm font-semibold no-underline transition-all duration-200 cursor-pointer"
-      style="color: #22C55E;"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold no-underline transition-all duration-200 cursor-pointer hover:opacity-80"
+      style="color: #F0A500; font-family: 'Space Grotesk', sans-serif;"
     >
       Tous les projets
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
@@ -19,8 +19,8 @@ const featured = projects.slice(0, 4);
   </div>
 
   <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
-    {featured.map((project) => (
-      <li class="min-w-0 flex flex-col">
+    {featured.map((project, i) => (
+      <li class={`min-w-0 flex flex-col reveal reveal-delay-${i + 1}`}>
         <ProjectCard
           slug={project.slug}
           title={project.title}

@@ -11,20 +11,20 @@ const { position, company, duration, responsibilities } = Astro.props;
 ---
 
 <div>
-  <h3 class="m-0 text-base font-semibold" style="color: #F1F5F9;">
+  <h3 class="m-0 text-base font-semibold" style="color: #EDEFF4; font-family: 'Space Grotesk', sans-serif;">
     {position}
-    <span class="font-normal" style="color: #22C55E;"> — {company}</span>
+    <span class="font-normal" style="color: #F0A500;"> — {company}</span>
   </h3>
   <span
-    class="inline-block text-xs font-medium mt-1 mb-3 px-2.5 py-0.5 rounded-full"
-    style="background: rgba(255,255,255,0.05); color: #94A3B8; border: 1px solid rgba(255,255,255,0.08);"
+    class="inline-block text-[11px] font-medium mt-1.5 mb-3 px-2.5 py-0.5 rounded-full mono"
+    style="background: rgba(240,165,0,0.07); color: #94A3B8; border: 1px solid rgba(240,165,0,0.12);"
   >
     {duration}
   </span>
   <ul class="list-none m-0 p-0 flex flex-col gap-1.5">
     {responsibilities.map((p) => (
-      <li class="flex items-start gap-2 text-sm" style="color: #94A3B8;">
-        <svg class="flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <li class="flex items-start gap-2 text-sm" style="color: #64748B;">
+        <svg class="flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F0A500" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
         {p}
       </li>
     ))}

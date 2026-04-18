@@ -9,17 +9,20 @@ import { projects } from '../../data/projects';
   description="Découvrez les projets web réalisés par Florent Perez : sites vitrines, applications full stack et intégrations sur mesure."
 >
   <!-- Page header -->
-  <header class="flex flex-col gap-3">
-    <h1 class="text-2xl sm:text-3xl font-bold text-[var(--text-color)]">Projets</h1>
-    <p class="text-[1.1em] text-[var(--text-color)] opacity-75 max-w-[600px]">
+  <header class="flex flex-col gap-3 reveal">
+    <div class="flex items-center gap-2 mb-1">
+      <span class="text-xs mono px-2 py-1 rounded" style="background: rgba(240,165,0,0.08); color: #F0A500; border: 1px solid rgba(240,165,0,0.2);">// projets</span>
+    </div>
+    <h1 class="text-2xl sm:text-3xl font-bold gradient-text">Projets</h1>
+    <p class="text-sm sm:text-base max-w-[600px]" style="color: #64748B;">
       Une sélection de projets réalisés pour des clients et en autonomie, du site vitrine à l'application web complète.
     </p>
   </header>
 
   <!-- Grid -->
-  <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-    {projects.map((project) => (
-      <li class="min-w-0 flex flex-col">
+  <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+    {projects.map((project, i) => (
+      <li class={`min-w-0 flex flex-col reveal reveal-delay-${Math.min(i % 3 + 1, 4)}`}>
         <ProjectCard
           slug={project.slug}
           title={project.title}
@@ -32,11 +35,11 @@ import { projects } from '../../data/projects';
     ))}
   </ul>
 
-  <!-- Back to homepage -->
-  <div class="flex justify-start">
+  <div class="flex justify-start reveal">
     <a
       href="/"
-      class="inline-flex items-center gap-2 text-sm text-[var(--text-color)] opacity-70 hover:opacity-100 hover:text-primary transition-all no-underline"
+      class="inline-flex items-center gap-2 text-sm no-underline transition-all duration-200 hover:text-[#F0A500] cursor-pointer"
+      style="color: #475569; font-family: 'Space Grotesk', sans-serif;"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
       Retour à l'accueil

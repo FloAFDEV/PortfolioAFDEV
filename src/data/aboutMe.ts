@@ -1,8 +1,8 @@
 export const aboutMe = {
   name: 'Je suis Florent Perez',
-  profession: 'Développeur Full Stack',
+  profession: 'Développeur Full Stack spécialisé en expérience utilisateur et performance',
   description:
-    'Je conçois des applications web utiles, performantes et pensées pour répondre à de vrais besoins métier.',
+    'Après 25 ans dans le secteur du transport, j\'ai développé une approche concrète, orientée terrain et résolution de problèmes, que j\'applique aujourd\'hui au développement web.',
   bio: {
     paragraphs: [
       'Entré dans le secteur des transports publics en 2000 en tant que conducteur, j’ai évolué vers des fonctions opérationnelles puis vers un poste de chargé de signalétique. Cette expérience de terrain m’a permis de développer une compréhension approfondie des flux voyageurs, des enjeux d’accessibilité et des problématiques organisationnelles.',

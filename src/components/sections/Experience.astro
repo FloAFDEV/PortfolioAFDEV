@@ -18,7 +18,7 @@ import ExperienceCard, { type ExperienceItem } from '../Experience/ExperienceCar
     ></div>
 
     {
-      experience.map((exp: ExperienceItem) => (
+      experience.map((exp: ExperienceItem, i: number) => (
         <li class="relative pb-8 last:pb-0 stagger-item">
           <!-- Gold dot with pulse -->
           <div
